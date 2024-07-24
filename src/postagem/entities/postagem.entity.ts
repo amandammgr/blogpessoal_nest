@@ -1,6 +1,7 @@
 import { Transform, TransformFnParams } from "class-transformer";
 import { IsNotEmpty } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Tema } from "../../tema/entities/tema.entity";
 // criando o nome da tabela tb_postagens pro mysql nao criar com o nome de postagem
 @Entity({name: "tb_postagens"}) // criando a tabela
 export class Postagem{ // se nao colocar um nome, ele cria a tabela com o nome da entidade (Postagem)
@@ -19,6 +20,11 @@ export class Postagem{ // se nao colocar um nome, ele cria a tabela com o nome d
     texto: string;
 
     @UpdateDateColumn() // a data e a hora serão preenchidas automaticamente
-    data: Date; 
+    data: Date;
+
+    @ManyToOne(() => Tema, (tema) => tema.postagem, {
+        onDelete: "CASCADE"
+    })
+    tema: Tema
 
 }
