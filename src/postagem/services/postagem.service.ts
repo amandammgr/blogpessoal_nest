@@ -20,7 +20,8 @@ export class PostagemService{
         // SELECT * FROM tb_postagens; a linha 16 é o equivalente a esse comando no banco de dados
         return await this.postagemRepository.find({
             relations:{
-                tema: true
+                tema: true,
+                usuario: true
             }
         }); // await pede pra jogar pra segundo plano até vir a resposta, tem que colocar sempre
     }     // promise tem 3 estados, pendente, resolvida e rejeitada, ela tenta cumprir a função, mas se ela nao conseguir cumprir a função, ela vai ser rejeitada
@@ -32,7 +33,8 @@ export class PostagemService{
                 id
             },
             relations:{
-                tema: true
+                tema: true,
+                usuario: true
             }
         })
 
@@ -49,7 +51,8 @@ export class PostagemService{
                 titulo: ILike(`%${titulo}%`) // ILike é menos sensitivel, então tanto faz se o titulo for maiusculo ou minusculo
             },
             relations:{
-                tema: true
+                tema: true,
+                usuario: true
             }
         })
     }

@@ -6,6 +6,9 @@ import { Postagem } from './postagem/entities/postagem.entity';
 import { PostagemModule } from './postagem/postagem.module';
 import { Tema } from './tema/entities/tema.entity';
 import { TemaModule } from './tema/tema.module';
+import { AuthModule } from './auth/auth.module';
+import { UsuarioModule } from './usuario/usuario.module';
+import { Usuario } from './usuario/entities/usuario.entity';
 
 @Module({
   imports: [ // responsável por criar a conexão com o branco de dados
@@ -16,12 +19,14 @@ import { TemaModule } from './tema/tema.module';
       username:'root', // em produção cria-se um usuário específico com direitos limitados apenas para o que a produção vai precisar
       password: 'A0m1a4n7d0a0',
       database: 'db_blogpessoal', // nome do banco de dados q vc precisa criar no mysql antes de inserir aqui
-      entities: [Postagem, Tema], // adc as entidades que vamos usar 
+      entities: [Postagem, Tema, Usuario], // adc as entidades que vamos usar 
       synchronize: true, // cria a sincronização com o banco de dados, se tiver alguma alteração nas tabelas, ele atualiza sozinho
       logging: true, // faz vc visualizar o que ta acontecendo// não usa em produção, somente no desenvolvimento
     }),
     PostagemModule, // é a classe que vai definir o recurso, vamos registrar todas as classes que vai compor o recurso (postagem, postagem service e controller), so acrescenta aqui dps de criar a postagem module.
     TemaModule,
+    AuthModule,
+    UsuarioModule,
   ],
   controllers: [],
   providers: [],
